@@ -4,18 +4,43 @@
   flex-direction: column;
   align-items: center;
 }
-
+.btn_getUserInfo {
+  position: relative;
+  top: -200rpx;
+}
 .userinfo-avatar {
   width: 128rpx;
   height: 128rpx;
   margin: 20rpx;
   border-radius: 50%;
+  position: relative;
+  top: -200rpx;
 }
 
 .userinfo-nickname {
-  color: #aaa;
+  color: #444444;
+  position: relative;
+  top: -210rpx;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+.wechat {
+  position: relative;
+  top: -160rpx;
+}
+.check_content  {
+  width:100%;
+  position: relative;
+  top: -120rpx;
+  margin-left: 200rpx;
+}
+.tips {
+  font-size: 16px;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  position: relative;
+  left: -10rpx;
 }
 
 .usermotto {
-  margin-top: 200px;
+  margin-top: 60px;
+  text-align: center;
 }

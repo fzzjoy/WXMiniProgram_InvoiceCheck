@@ -1,19 +1,19 @@
 <!--index.wxml-->
 <view class="container">
   <view class="userinfo">
-    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
+    <button class="btn_getUserInfo" wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
     <block wx:else>
       <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
       <text class="userinfo-nickname">{{userInfo.nickName}}</text>
     </block>
-    <image bindtap="onScan" style="width: 100px; height: 100px;" src="./image/QRCode.svg"></image>
-    <view>
-      <text>发票种类:{{invoice_type}}\n</text>
-      <text>发票代码:{{invoice_code}}\n</text>
-      <text>发票号码:{{invoice_number}}\n</text>
-      <text>发票金额:{{invoice_total}} (不含税)\n</text>
-      <text>发票日期:{{invoice_date}}\n</text>
-      <text>发票校验码:{{invoice_checksum}}</text>
+    <image class="wechat" bindtap="onScan" style="width: 100px; height: 100px;" src="./image/QRCode.svg"></image>
+    <view class="check_content">
+      <text class="tips">发票种类:  {{invoice_type}}\n</text>
+      <text class="tips">发票代码:  {{invoice_code}}\n</text>
+      <text class="tips">发票号码:  {{invoice_number}}\n</text>
+      <text class="tips">发票金额:  {{invoice_total}} (不含税)\n</text>
+      <text class="tips">发票日期:  {{invoice_date}}\n</text>
+      <text class="tips">发票校验码:  {{invoice_checksum}}</text>
     </view>
     <view>
       <button bindtap="onRecord">录入系统</button>
