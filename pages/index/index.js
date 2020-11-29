@@ -103,6 +103,17 @@ Page({
     this.setData({
       record_info: ""
     })
+    
+    console.log("thi.data.hasUserInfo:", this.data.hasUserInfo)
+    if(!this.data.hasUserInfo)
+    {
+      wx.showToast({
+        title: '请先点击用户登录',
+        icon: 'none',
+        duration: 1000
+      })
+      return
+    }
     invoice_db.add({
       // data 字段表示需新增的 JSON 数据
       data: {
