@@ -1,7 +1,11 @@
 //index.js
 //获取应用实例
 const app = getApp()
+const db = wx.cloud.database() // 获取数据库引用
+const invoice_db = db.collection("invoices")
+
 import log from '../../utils/log.js'
+import { formatTime } from '../../utils/util.js'
 
 Page({
   data: {
@@ -14,7 +18,8 @@ Page({
     invoice_number: "",   // 发票号码
     invoice_total: "",    // 发票金额
     invoice_date: "",     // 发票日期
-    invoice_checksum: ""  // 校验码
+    invoice_checksum: "", // 校验码
+    record_info: ""       // 录入成功与否
   },
   //事件处理函数
   bindViewTap: function() {
@@ -94,6 +99,46 @@ Page({
               break;
           }
         }
+      }
+    })
+  },
+
+  // 录入数据库
+  onRecord : function() {
+    this.setData({
+      record_info: ""
+    })
+    invoice_db.add({
+      // data 字段表示需新增的 JSON 数据
+      data: {
+        _id: this.data.invoice_code + "+" + this.data.invoice_number, 
+        type: this.data.invoice_type,
+        total: this.data.invoice_total,
+        invoice_date: this.data.invoice_date,
+        checksum: this.data.invoice_checksum,
+        recorder: app.globalData.userInfo.nickName,
+        record_date: formatTime(new Date())
+      },
+      success:  res => {
+        // res 是一个对象，其中有 _id 字段标记刚创建的记录的 id
+        console.log(res)
+        this.setData({
+          record_info: "录入成功，录入人：" + app.globalData.userInfo.nickName
+        })
+      },
+
+      fail: res => {
+        console.log(res)
+        var info = ""
+        if(res.errCode == -502001) {
+          info = "数据已存在"
+        }
+        else {
+          info = res.errMsg
+        }
+        this.setData({
+          record_info: "录入失败，ERROR[" + res.errCode + "]:" + info
+        })
       }
     })
   },
