@@ -21,12 +21,7 @@ Page({
     invoice_checksum: "", // 校验码
     record_info: ""       // 录入成功与否
   },
-  //事件处理函数
-  bindViewTap: function() {
-    wx.navigateTo({
-      url: '../logs/logs'
-    })
-  },
+
 
   // 扫一扫
   onScan : function () {
