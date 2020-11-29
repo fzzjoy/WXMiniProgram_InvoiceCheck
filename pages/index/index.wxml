@@ -1,0 +1,22 @@
+<!--index.wxml-->
+<view class="container">
+  <view class="userinfo">
+    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
+    <block wx:else>
+      <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+    </block>
+    <image bindtap="onScan" style="width: 100px; height: 100px;" src="./image/QRCode.svg"></image>
+  <view>
+    <text>发票种类:{{invoice_type}}\n</text>
+    <text>发票代码:{{invoice_code}}\n</text>
+    <text>发票号码:{{invoice_number}}\n</text>
+    <text>发票金额:{{invoice_total}} (不含税)\n</text>
+    <text>发票日期:{{invoice_date}}\n</text>
+    <text>发票校验码:{{invoice_checksum}}</text>
+  </view>
+  </view>
+  <view class="usermotto">
+    <text class="user-motto">发票扫描查重助手</text>
+  </view>
+</view>
